@@ -1,0 +1,7 @@
+20240424	22:06:50	4eb37a7f-1150-45d6-874e-2d23a7421c9f	TypeError: fsPromises.readFil is not a function
+20240425	20:56:06	dc212815-365a-4380-8f7d-20d92980ac7c	Error: Not allowed by CORS
+20240425	21:03:51	d1c51ada-ab7e-47c4-9324-6c3a3ee06aca	TypeError: req.accepted is not a function
+20240425	22:03:50	2c29c02b-8d2b-4c44-bc43-66ae3ff846ee	TypeError: Cannot read properties of undefined (reading 'id')
+20240425	22:03:57	47fe0b53-62b0-42fa-8f6d-1555c6c32b63	TypeError: Cannot read properties of undefined (reading 'id')
+20240426	13:18:17	8114cb17-7918-4fd1-b818-2732f4bb7c3c	ReferenceError: pasrseInt is not defined
+20240426	13:20:51	2c4b1b9c-75f0-40b8-9e47-0177ef81a75e	TypeError: req.status is not a function
