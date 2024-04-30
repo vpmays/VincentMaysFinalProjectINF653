@@ -97,9 +97,9 @@ const getFunFact = async (req, res) => {
     }
     const stateWithFunFacts = await Statesfunfact.findOne({code: req.params.code.toUpperCase()}).exec();
     if (!stateWithFunFacts) {
-        return res.status(404).json({ "message": `No fun facts found for ${state.state}`});
+        return res.status(404).json({ "message": `No Fun Facts found for ${state.state}`});
     }
-    res.json({"state": state.state, "funfact": stateWithFunFacts.funfacts[Math.floor(Math.random() * stateWithFunFacts.funfacts.length)]});
+    res.json({"funfact": stateWithFunFacts.funfacts[Math.floor(Math.random() * stateWithFunFacts.funfacts.length)]});
 }
 
 
