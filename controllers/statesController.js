@@ -1,6 +1,7 @@
 //set up data opbject
 //const Employee = require('../model/Employee');
 const State = require('../model/State');
+const Statesfunfact = require('../model/Statesfunfact');
 
 // const getAllEmployees = async (req, res) => {
 //     const employees = await Employee.find();
@@ -8,10 +9,52 @@ const State = require('../model/State');
 //     res.json(employees);
 // }
 const getAllStates = async (req, res) => {
-    const states = await State.find();
-    if (!states) return res.status(204).json({"message": "No states found."});
-    res.json(states);
+    let states = await State.find().lean();
+    const funStates = await Statesfunfact.find();
+    if (!states) return res.status(404).json({"message": "No states found."});
+    for (state in states) {
+        for (funState in funStates) {
+            if (states[state].code === funStates[funState].code) {
+                states[state]["funfacts"] = funStates[funState].funfacts;
+            }
+        } 
+    }
+    const nonContigStates = ["AK", "HI"]
+    let newStates = [];
+    if (req.query.contig == "true") {
+        for (state in states) {
+            if (!nonContigStates.includes(states[state].code)) {
+                newStates.push(states[state]);
+            }
+        }
+        return res.json(newStates);
+    } else if (req.query.contig == "false") {
+        for (state in states) {
+            if (nonContigStates.includes(states[state].code)) {
+                newStates.push(states[state]);
+            } 
+        }
+        return res.json(newStates);
+    } else {
+        return res.json(states);
+    }
 }
+
+// const getContig = async (req, res) => {
+//     console.log(req.searchParams.get('contig'))
+    // myUrl.searchParams.get('abc')
+    // let states = await State.find().lean();
+    // const funStates = await Statesfunfact.find();
+    // if (!states) return res.status(404).json({"message": "No states found."});
+    // for (state in states) {
+    //     for (funState in funStates) {
+    //         if (states[state].code === funStates[funState].code) {
+    //             states[state]["funfacts"] = funStates[funState].funfacts;
+    //         }
+    //     } 
+    // }
+    //res.json(states);
+//}
 
 // const createNewEmoloyee = async (req, res) => {
 //     //make sure first and last name are sent
@@ -154,6 +197,7 @@ module.exports = {
     // deleteEmplolyee,
     // getEmployee,
     getAllStates,
+    //getContig,
     getState,
     getCapital,
     getNickname,

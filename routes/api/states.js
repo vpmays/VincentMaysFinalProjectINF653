@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 //const employeesController = require('../../controllers/employeesController');
 const statesController = require('../../controllers/statesController');
+const statesfunfactsController = require('../../controllers/statesfunfactsController');
 
 router.route('/')
     // .get(employeesController.getAllEmployees)
@@ -28,6 +29,6 @@ router.route('/:code/admission')
     .get(statesController.getAdmission);
 
 router.route('/:code/funfact')
-    .get(statesController.getFunfact);
+    .get(statesfunfactsController.getFunFact);
 
 module.exports = router;

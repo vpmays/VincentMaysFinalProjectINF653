@@ -77,7 +77,7 @@ const stateSchema = new Schema({
     facebook_url: {
         type: String,
         require: true
-    },
+    }
 })
 
 //mongoose will automatically look for the lowercase and plural version of the first parameter below (your model name)
