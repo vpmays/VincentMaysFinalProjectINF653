@@ -437,3 +437,7 @@
 20240430	00:51:44	c8cebf11-ba1e-44d3-8fa8-7c27a3e8ffe8	DELETE	undefined	/states/MO/funfact
 20240430	00:55:15	32aea745-83e4-4a34-a7f3-7164e8f39b2e	DELETE	undefined	/states/MO/funfact
 20240430	00:56:17	95965fe4-4eb4-464b-acab-0da758b34dc5	POST	undefined	/states/MO/funfact
+20240430	01:29:47	3913d275-0a2c-4737-b539-c0582143f0fd	DELETE	undefined	/states/OR/funfact
+20240430	01:29:58	8e2007be-1a01-4a8c-b7c6-882e677756d5	DELETE	undefined	/states/OR/funfact
+20240430	01:30:09	80ef747d-3f0e-4035-9e3d-787747498c93	DELETE	undefined	/states/OR/funfact
+20240430	01:30:16	90603a61-7c76-4e3f-a773-7aa4a86c2fd8	DELETE	undefined	/states/OR/funfact
