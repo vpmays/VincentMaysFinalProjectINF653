@@ -6,9 +6,6 @@ const corsOptions = require('./config/corsOptions');
 const app = express();
 const { logger } = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
-// const verifyJWT = require('./middleware/verifyJWT');
-// const cookieParser = require('cookie-parser');
-// const credentials = require('./middleware/credentials');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
 
@@ -52,44 +49,13 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 //routes 
 app.use('/', require('./routes/root'));
 
-//app.use('/register', require('./routes/register'));
-// app.use('/auth', require('./routes/auth'));
-// app.use('/refresh', require('./routes/refresh'));
-// app.use('/logout', require('./routes/logout'));
-// app.use(verifyJWT);
-
 // app.use('/employees', require('./routes/api/employees'));
 app.use('/states', require('./routes/api/states'));
-
-// //example of a route handler (these are all route handlers but this does more stuff with next)
-// app.get('/hello(.html)?', (req, res, next) => {
-//     console.log('Attempted to load hello.html');
-//     next(); //next() tells epress to call the next function in the chaing, this can continue as mucha s you want
-//     }, (req, res) => {
-//         res.send('Hello world!');
-//     });
-
-// //another example of chaining funciton with next()
-// const one = (req,res,next) => {
-//     console.log('one');
-//     next();
-// }
-// const two = (req,res,next) => {
-//     console.log('two');
-//     next();
-// }
-// const three = (req,res) => {
-//     console.log('three');
-//     res.send('Finished the chain!');
-// }
-// //then call all these function in a route by feeding the .get() and array
-// app.get('/chain(.html)?', [one, two, three]);
 
 // //respond to get request on any page that you don't have and send to 404 (need to specify 404 siince we actually do have 404.html)
 // // this works because epress treats these routes as a waterfall
 // // can use use.all instead of get to catch anything that made it this far down the waterfall
 // // .all responds to all request types
-
 app.all('*', (req, res) => {
     //res.sendFile('./views/index.html', { root: __dirname });
     res.status(404);

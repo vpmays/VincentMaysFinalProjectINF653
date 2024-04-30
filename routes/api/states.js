@@ -1,18 +1,11 @@
 const express = require('express');
 const router = express.Router();
-//const employeesController = require('../../controllers/employeesController');
 const statesController = require('../../controllers/statesController');
 const statesfunfactsController = require('../../controllers/statesfunfactsController');
 
 router.route('/')
-    // .get(employeesController.getAllEmployees)
-    // .post(employeesController.createNewEmoloyee)
-    // .put(employeesController.updateEmployee)
-    // .delete(employeesController.deleteEmplolyee);
     .get(statesController.getAllStates);
 
-// router.route('/:id')
-//     .get(employeesController.getEmployee);
 router.route('/:code')
     .get(statesController.getState);
 
