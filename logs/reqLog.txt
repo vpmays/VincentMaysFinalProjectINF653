@@ -369,3 +369,8 @@
 20240429	19:54:12	1a4fdf39-35dd-47cd-938e-0c872a442b38	GET	undefined	/states/?contig=true
 20240429	19:58:53	f7054923-4b51-46b8-88e1-b763ea8513be	GET	undefined	/states/?contig=true
 20240429	19:59:16	c2abc188-a892-4525-a685-c1526162ec9e	GET	undefined	/states/?contig=false
+20240429	20:24:48	b045bc95-a2f0-4c27-9ccb-f8cf300b17fb	GET	undefined	/states/CO
+20240429	20:26:08	b9e040f7-fe2f-4a99-8aff-0e66d73c063e	GET	undefined	/states/CO
+20240429	20:26:50	1217646d-9a30-4b8a-8e91-c9b2f97a5281	GET	undefined	/states/CO
+20240429	20:27:06	0a34315d-7169-4eb9-8639-095d59a402d2	GET	undefined	/states/CO
+20240429	20:27:45	8c09334d-b6b4-49e4-b7f0-650561e7a4f0	GET	undefined	/states/CO
