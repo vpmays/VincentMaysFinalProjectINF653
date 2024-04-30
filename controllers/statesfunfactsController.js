@@ -81,6 +81,22 @@ const createNewFunFact = async (req, res) => {
 //     res.json(result);
 // }
 
+const patchFunFact = async (req, res) => {
+    if (!req?.body?.index) return res.status(400).json({'message':'State fun fact index value required'});
+    if (!req?.body?.funfact || (typeof req?.body?.funfact !== "string") || (req?.body?.funfact === "")) return res.status(400).json({"message": "State fun fact value required"});
+    const state = await State.findOne({code: req.params.code.toUpperCase()}).exec();
+    if (!state) {
+        return res.status(400).json({ "message": "Invalid state abbreviation parameter"});
+    }
+    const funState = await Statesfunfact.findOne({code: req.params.code.toUpperCase()}).exec();
+    if (!funState) {
+        return res.status(404).json({ "message": `No Fun Facts found for ${state.state}`});
+    }
+    funState.funfacts[req.body.index - 1] = req.body.funfact
+    const result = await funState.save();
+    res.json(result);
+}
+
 // const deleteEmplolyee = async (req, res) => {
 //     if (!req?.body?.id) {
 //         return res.status(400).json({'message': 'An employee id is required.'})
@@ -94,6 +110,22 @@ const createNewFunFact = async (req, res) => {
 //     const result = await employee.deleteOne({_id: req.body.id});
 //     res.json(result);
 // }
+
+const deleteFunFact = async (req, res) => {
+    if (!req?.body?.index) return res.status(400).json({'message':'State fun fact index value required'});
+    const state = await State.findOne({code: req.params.code.toUpperCase()}).exec();
+    if (!state) {
+        return res.status(400).json({ "message": "Invalid state abbreviation parameter"});
+    }
+    const funState = await Statesfunfact.findOne({code: req.params.code.toUpperCase()}).exec();
+    if (!funState) {
+        return res.status(404).json({ "message": `No Fun Facts found for ${state.state}`});
+    }
+    if (funState.funfacts.length < req.body.index) return res.status(400).json({'message':`No Fun Fact found at that index for ${state.state}`});
+    funState.funfacts.splice([req.body.index - 1], req.body.index - 1);
+    const result = await funState.save();
+    res.json(result);
+}
 
 // const getEmployee = async (req, res) => {
 //     if (!req?.params?.id) {
@@ -148,5 +180,7 @@ module.exports = {
     // getPopulation,
     // getAdmission,
     getFunFact,
-    createNewFunFact
+    createNewFunFact,
+    patchFunFact,
+    deleteFunFact
 }

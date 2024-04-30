@@ -5,3 +5,4 @@
 20240425	22:03:57	47fe0b53-62b0-42fa-8f6d-1555c6c32b63	TypeError: Cannot read properties of undefined (reading 'id')
 20240426	13:18:17	8114cb17-7918-4fd1-b818-2732f4bb7c3c	ReferenceError: pasrseInt is not defined
 20240426	13:20:51	2c4b1b9c-75f0-40b8-9e47-0177ef81a75e	TypeError: req.status is not a function
+20240430	00:38:45	a92c835e-723e-4af6-aff5-34768cff659b	SyntaxError: Expected ',' or '}' after property value in JSON at position 14
