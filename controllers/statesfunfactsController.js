@@ -32,6 +32,51 @@ const State = require('../model/State');
     
 // }
 
+const createNewFunFact = async (req, res) => {
+    if (!req?.body?.funfacts) return res.status(400).json({'message':'State fun facts value required'});
+    if (!Array.isArray(req.body.funfacts)) return res.status(400).json({"message": "State fun facts value must be an array"});
+    const state = await State.findOne({code: req.params.code.toUpperCase()}).exec();
+    if (!state) {
+        return res.status(400).json({ "message": "Invalid state abbreviation parameter"});
+    }
+    const funStates = await Statesfunfact.find();
+    let newFunFacts = [];
+    if (req.body?.funfacts) {
+        //console.log(funStates);
+        for (item in funStates) {
+            //console.log(funStates[item]);
+            if (state.code === funStates[item].code) {
+                for (funFact in funStates[item].funfacts) {
+                    newFunFacts.push(funStates[item].funfacts[funFact]);
+                }
+                for (funFact in req.body.funfacts) {
+                    newFunFacts.push(req.body.funfacts[funFact]);
+                }
+                funStates[item].funfacts = newFunFacts;
+                // const result = await funStates[item].save();
+                // return res.json(result);
+            }
+        }
+        if (newFunFacts.length == 0) {
+            for (funFact in req.body.funfacts) {
+                newFunFacts.push(req.body.funfacts[funFact]);
+            }
+            // try {
+            //     const result = await Statesfunfact.create({
+            //         code: state.code,
+            //         funfacts: newFunFacts,
+        
+            //     });
+        
+            //     return res.status(201).json(result);
+            // } catch (err) {
+            //     console.error(err);
+            // }
+         }
+    }
+    console.log(newFunFacts);
+}
+
 // const updateEmployee = async (req, res) => {
     
 //     if (!req?.body?.id) {
@@ -115,5 +160,6 @@ module.exports = {
     // getNickname,
     // getPopulation,
     // getAdmission,
-    getFunFact
+    getFunFact,
+    createNewFunFact
 }

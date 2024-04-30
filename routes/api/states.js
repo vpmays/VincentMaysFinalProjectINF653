@@ -29,6 +29,7 @@ router.route('/:code/admission')
     .get(statesController.getAdmission);
 
 router.route('/:code/funfact')
-    .get(statesfunfactsController.getFunFact);
+    .get(statesfunfactsController.getFunFact)
+    .post(statesfunfactsController.createNewFunFact);
 
 module.exports = router;
