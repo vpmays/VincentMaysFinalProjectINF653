@@ -53,28 +53,27 @@ const createNewFunFact = async (req, res) => {
                     newFunFacts.push(req.body.funfacts[funFact]);
                 }
                 funStates[item].funfacts = newFunFacts;
-                // const result = await funStates[item].save();
-                // return res.json(result);
+                const result = await funStates[item].save();
+                return res.json(result);
             }
         }
         if (newFunFacts.length == 0) {
             for (funFact in req.body.funfacts) {
                 newFunFacts.push(req.body.funfacts[funFact]);
             }
-            // try {
-            //     const result = await Statesfunfact.create({
-            //         code: state.code,
-            //         funfacts: newFunFacts,
+            try {
+                const result = await Statesfunfact.create({
+                    code: state.code,
+                    funfacts: newFunFacts,
         
-            //     });
+                });
         
-            //     return res.status(201).json(result);
-            // } catch (err) {
-            //     console.error(err);
-            // }
+                return res.status(201).json(result);
+            } catch (err) {
+                console.error(err);
+            }
          }
     }
-    console.log(newFunFacts);
 }
 
 // const updateEmployee = async (req, res) => {
