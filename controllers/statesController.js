@@ -121,12 +121,20 @@ const getState = async (req, res) => {
     // if (!req?.body?.code) {
     //     return res.status(400).json({'message': 'A state code is required.'})
     // }
-    const state = await State.findOne({code: req.params.code.toUpperCase()}).exec();
+    const funStates = await Statesfunfact.find();
+    let state = await State.findOne({code: req.params.code.toUpperCase()}).exec();
     if (!state) {
         return res.status(400).json({ "message": "Invalid state abbreviation parameter"});
     }
+    state = json(state)
+    delete state._id;
+    for (funState in funStates) {
+        if (state.code === funStates[funState].code) {
+            state["funfacts"] = funStates[funState].funfacts;
+        }
+    }
 
-    res.json(state);
+    res.state;
 }
 
 const getCapital = async (req, res) => {
