@@ -124,8 +124,13 @@ const deleteFunFact = async (req, res) => {
     }
     if (funState.funfacts.length < req.body.index) return res.status(400).json({'message':`No Fun Fact found at that index for ${state.state}`});
     funState.funfacts.splice([req.body.index - 1], 1);
+    // if (funState.funfacts.length === 0) {
+    //     await funState.deleteOne({_id: funState._id});
+    //     res.json({ "message": `${state.state} had no more fun facts, so it was removed`});
+    // } else {
     const result = await funState.save();
     res.json(result);
+    // }
 }
 
 // const getEmployee = async (req, res) => {
