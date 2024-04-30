@@ -92,6 +92,7 @@ const patchFunFact = async (req, res) => {
     if (!funState) {
         return res.status(404).json({ "message": `No Fun Facts found for ${state.state}`});
     }
+    if (funState.funfacts.length < req.body.index) return res.status(400).json({'message':`No Fun Fact found at that index for ${state.state}`});
     funState.funfacts[req.body.index - 1] = req.body.funfact
     const result = await funState.save();
     res.json(result);
